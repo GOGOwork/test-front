@@ -48,7 +48,6 @@ app.post('/', (req, res) => {
 })
 // include需先建立關聯，關聯設定在models資料夾的table設定 associate 中
 
-
 const server = app.listen(24530, () => {
     let port = server.address().port
     console.log("application running on port: " + port)
