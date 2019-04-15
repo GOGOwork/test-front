@@ -1,0 +1,32 @@
+{
+  "pms_hd": {
+    "username": "jasonlin832",
+    "password": "fmp6ck6y xul4dj4",
+    "database": "pms_hd",
+    "host": "114.34.164.133",
+    "port": "3306",
+    "dialect": "mysql",
+    "autocommit": true,
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "pms_mitwit": {
+    "username": "jasonlin832",
+    "password": "fmp6ck6y xul4dj4",
+    "database": "pms_mitwit",
+    "host": "114.34.164.133",
+    "port": "3306",
+    "dialect": "mysql",
+    "autocommit": true,
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }
+}
