@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <title>TEST</title>
+
+</head>
+<style>
+    body {
+        background-color: beige;
+    }
+
+    table {
+        text-align: center;
+    }
+
+    .loader {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 2019;
+        background: url('https://loading.io/spinners/eclipse/lg.ring-loading-gif.gif') 50% 50% no-repeat rgb(249, 249, 249);
+        opacity: .8;
+    }
+</style>
+<!--loading.io 提供許多加載圖示，網頁製作時很方便-->
+
+<!--  
+    1.在<\% %\>中可撰寫javascript語言  
+    2.輸出為<\%=值%\>
+    3.if或for迴圈內的html標籤會根據判斷式增加或不增加
+    (備註無法阻止ejs編譯填空區，去掉\)
+ -->
+
+<!--編譯器雖然將ejs檔視為html，但對ejs的寫法支援低(顏色分配詭異或紅底線)-->
+<body>
+    <table border="1" align="center" style="text-align:center;">
+        <tr>
+            <td>testId</td>
+            <td>testName</td>
+            <td>testAccount</td>
+            <td>testMessage</td>
+            <td colspan="2">/</td>
+        </tr>
+        <%for(let i=0;i<DATA.length;i++){%>
+        <tr id="tr<%=i%>">
+            <form id="form<%=i%>">
+                <td><%=DATA[i].testId%></td>
+                <td><input type="text" name="testName" value="<%=DATA[i].testName%>"></td>
+                <td><input type="text" name="testAccount" value="<%=DATA[i].testAccount%>"></td>
+                <td><input type="text" name="testMessage" value="<%=DATA[i].testMessage%>"></td>
+                <td>
+                    <input type="hidden" name="testId" value="<%=DATA[i].testId%>">
+                    <button type="button" onclick="update($('#form<%=i%>').serialize(),<%=i%>)">修改</button>
+                </td>
+            </form>
+            <td>
+                <form action="" method="post">
+                    <input type="hidden" name="ID" value="<%=DATA[i].testId%>">
+                    <input type="submit" value="查看">
+                </form>
+            </td>
+        </tr>
+        <%}%>
+    </table>
+    <div id="loader"></div>
+</body>
+<script>
+    function update(val, position) {
+        $("#loader").html("<div class='loader'></div>") // 執行中圖示
+        $.post(
+            '',
+            val,
+            function (data) {
+                alert(data)
+                $("#loader").html("") // 覆蓋執行中圖示
+                location.reload() //重新整理
+            }
+        )
+    }
+</script>
+
+</html>
